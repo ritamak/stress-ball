@@ -1,6 +1,8 @@
 // DOM
 let canvas = document.querySelector("#myCanvas");
 let startBtn = document.querySelector("#startbtn")
+let box1 = document.querySelector("#box1")
+let box2 = document.querySelector("#box2")
 // AUDIO
 let startAudio = new Audio("https://res.cloudinary.com/manishp/video/upload/v1623305320/Horizon_Zero_Dawn_OST_-_Years_Of_Training_badkhk.mp3")
 let gameOverAudio = new Audio(" https://res.cloudinary.com/manishp/video/upload/v1615874740/aom/home_bhfqfk.mp3")
@@ -10,32 +12,45 @@ canvas.style.border = '2px solid black'
 canvas.style.backgroundColor = "olive"
 // PAINTBRUSH
 let ctx = canvas.getContext('2d')
+// HIDE BOXES
+box1.style.display = "none";
+box2.style.display = "none";
+
 //CANVAS TEXT
-ctx.font = "800 50px Courier New";
-ctx.fillStyle = "white";
-ctx.textAlign = "center";
-ctx.fillText("Welcome to stress|ball", canvas.width/2, canvas.height/3.5);
-ctx.font = " 30px Courier New";
-ctx.textAlign = "center";
-ctx.strokeText("The rules are simple:", canvas.width/2, canvas.height/2.3);
-ctx.font = " 30px Courier New";
-ctx.textAlign = "center";
-ctx.strokeText("Every time a ball appears in your screen, you have to click it.", canvas.width/2, canvas.height/1.9);
-ctx.font = "30px Courier New";
-ctx.textAlign = "center";
-ctx.strokeText("If you don't you will loose. Are you stressed enough?", canvas.width/2, canvas.height/1.5);
-// EVENT LISTENER LET'S PLAY BUTTON
-document.querySelector("#startbtn").addEventListener("click", function() {
+const begin = () => {
+    ctx.font = "800 50px Courier New";
+    ctx.fillStyle = "white";
+    ctx.textAlign = "center";
+    ctx.fillText("Welcome to stress|ball", canvas.width/2, canvas.height/3.5);
+    ctx.font = " 30px Courier New";
+    ctx.textAlign = "center";
+    ctx.strokeText("The rules are simple:", canvas.width/2, canvas.height/2.3);
+    ctx.font = " 30px Courier New";
+    ctx.textAlign = "center";
+    ctx.strokeText("Every time a ball appears in your screen, you have to click it.", canvas.width/2, canvas.height/1.9);
+    ctx.font = "30px Courier New";
+    ctx.textAlign = "center";
+    ctx.strokeText("If you don't you will loose. Are you stressed enough?", canvas.width/2, canvas.height/1.5);
+}
+begin()
+// GAME DISPLAY
+const game = () => {
     startText.style.display = 'none';
+    box1.style.display = "block";
+    box1.innerText = "You are on level 1 :: You have 2 points"
+    box1.style.textAlign = "center";
+    box1.style.backgroundColor = "#edecdf";
+    box2.style.display = "block";
+    box2.innerText = "This is the current time"
+    box2.style.textAlign = "center";
+    box2.style.backgroundColor = "#edecdf";
     startAudio.play()
     startAudio.volume = 0.1
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    setInterval(() => {
-        canvas.style.backgroundColor = canvas.style.backgroundColor == "olive" ? "gold" : "olive";
-    }, 500);
-
-    
-    //BEGIN
+}
+// EVENT LISTENER LET'S PLAY BUTTON
+document.querySelector("#startbtn").addEventListener("click", function() {
+    game()
     start()
     // Initialize my Ball
     let count = 0 // begin countdown
@@ -72,7 +87,7 @@ document.querySelector("#startbtn").addEventListener("click", function() {
             if (distance < this.radius) {
                 console.log("Dentro da bola")
             } else {
-                console.log("Fora da bola")
+                gameOver()
             }
     
         }
@@ -95,13 +110,13 @@ document.querySelector("#startbtn").addEventListener("click", function() {
     } else {
         seconds = 900
     }
-    let id = setInterval(function() {
+    let ballMoving = setInterval(function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         myBall.moveBall()
         myBall.draw(ctx)
     }, seconds)
-    setTimeout(function(){ 
-        clearInterval(id); 
+    let timeOut = setTimeout(function(){ 
+        clearInterval(ballMoving); 
     }, gameTime);
     }
     // Start Button
@@ -115,9 +130,15 @@ document.querySelector("#startbtn").addEventListener("click", function() {
         canvas.style.backgroundColor = canvas.style.backgroundColor == "olive" ? "gold" : "olive";
     }
     // Stop button
-    function stop() {
-        clearInterval(intervaloCores);
-        clearInterval(id)
+    function gameOver() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        canvas.style.backgroundColor = "red"
+        startText.style.display = 'none';
+        box1.style.display = "none";
+        box2.style.display = "none";
+        clearInterval(ballMoving)
+        clearInterval(intervaloCores)
+        clearTimeout(timeOut)
     }
     //EVENT LISTENER PARA O CLICK
     canvas.addEventListener("click", (event) => {
