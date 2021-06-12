@@ -5,16 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Rita Mak</title>
+    <title>StressBall by Rita Mak</title>
 </head>
 <body>
-    <button id="welcome">Welcome Ironhackers!</button> 
-    <canvas id="myCanvas" width="1655" height="550"></canvas>
-    <div id="gameBtns">
-    <input id="input" type="text">
-    <button id="start" onclick="start()">Start</button> 
-    <button id="reset" onclick="stop()">Stop</button> 
+    <h1>stress|ball</h1>
+    <div id="canvasWrapper">
+       <canvas id="myCanvas" width="1200" height="550"></canvas>
     </div>
+    <div id="startText"> <!--Nao apagar isto ou o start nao funciona-->
+        <div id="userInput">
+            <label for="fname" id="startkitText">Type your name here:</label>
+            <input type="text" id="startkitUser">
+            <input type="submit" id="startkitSubmit">	  
+         </div>
+         <button id="startbtn" onclick="start()">Let's play!</button>
+        </div>
+        <p id="box1"></p>
+        <p id="box2"></p>
     <script src="./game.js"></script>
+    <script src=./jogo3.js></script>
 </body>
 </html>
