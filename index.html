@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>StressBall by Rita Mak</title>
+    <title>jogoRascunho</title>
 </head>
 <body>
     <h1>stress|ball</h1>
@@ -16,9 +16,11 @@
         <div id="userInput">
             <label for="fname" id="startkitText">Type your name here:</label>
             <input type="text" id="startkitUser">
-            <input type="submit" id="startkitSubmit">	  
          </div>
-         <button id="startbtn" onclick="start()">Let's play!</button>
+         <button type="submit" id="startbtn">Let's play!</button>
+        </div>
+        <div id="restart">
+            <button id="rstrt">Play again!</button>
         </div>
         <div id="boxes">
         <p id="box1"></p>
@@ -28,14 +30,16 @@
             <span>:</span>
             <span id="secDec" class="number">0</span>
             <span id="secUni" class="number">0</span>
-            <div id="milliseconds">
-              <span id="milDec">0</span>
-              <span id="milUni">0</span>
-    <div id="final">
+            <span>:</span>
+            <span id="milDec">0</span>
+            <span id="milUni">0</span>
+    </div>
+    </div>
+        <div id="final">
         <p id="finalText"></p>
     </div>
-    <button id="rstrt" onclick="start()">Play again!</button>
-    <script src="./game.js"></script>
-    <script src="./game2.js"></script>
+    </div>
+    <script src="./script.js"></script>
+    <script src="game.js"></script>
 </body>
 </html>

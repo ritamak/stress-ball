@@ -1,66 +1,237 @@
-// DOM
-let canvas = document.querySelector("#myCanvas");
-let startBtn = document.querySelector("#startbtn")
-let box1 = document.querySelector("#box1")
-let box2 = document.querySelector("#sphere")
-let final = document.querySelector("#final")
-let finalText = document.querySelector("#finalText")
-
-// AUDIO
-let startAudio = new Audio("https://res.cloudinary.com/manishp/video/upload/v1623305320/Horizon_Zero_Dawn_OST_-_Years_Of_Training_badkhk.mp3")
-let gameOverAudio = new Audio(" https://res.cloudinary.com/manishp/video/upload/v1615874740/aom/home_bhfqfk.mp3")
-// CANVAS
-canvas.style.display = 'block';
-canvas.style.border = '2px solid black'
-canvas.style.backgroundColor = "olive"
-// PAINTBRUSH
-let ctx = canvas.getContext('2d')
-// HIDE BOXES
-box1.style.display = "none";
-box2.style.display = "none";
-final.style.display = "none";
-finalText.style.display = "none";
-// CANVAS TEXT
-const begin = () => {
-    ctx.font = "800 50px Courier New";
-    ctx.fillStyle = "white";
-    ctx.textAlign = "center";
-    ctx.fillText("Welcome to stress|ball", canvas.width/2, canvas.height/3.5);
-    ctx.font = " 30px Courier New";
-    ctx.textAlign = "center";
-    ctx.strokeText("The rules are simple:", canvas.width/2, canvas.height/2.3);
-    ctx.font = " 30px Courier New";
-    ctx.textAlign = "center";
-    ctx.strokeText("Every time a ball appears in your screen, you have to click it.", canvas.width/2, canvas.height/1.9);
-    ctx.font = "30px Courier New";
-    ctx.textAlign = "center";
-    ctx.strokeText("If you don't you will loose. Are you stressed enough?", canvas.width/2, canvas.height/1.5);
-}
-begin()
-// GAME DISPLAY
-const game = () => {
-    startText.style.display = 'none';
-    box1.style.display = "block";
-    box1.innerText = "You are on level 1 :: You have 2 points"
-    box1.style.textAlign = "center";
-    box1.style.backgroundColor = "#edecdf";
-    box2.style.display = "block";
-    startAudio.play()
-    startAudio.volume = 0.1
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
-// GAME OVER SCREEN
-const end = () => {
-    canvas.style.backgroundColor = "gold"
-    let phrase1 = `Your score was ${teste}`
-    ctx.font = "800 70px Courier New";
-    ctx.fillStyle = "red";
-    ctx.textAlign = "center";
-    ctx.fillText("NICE TRY!", canvas.width/2, canvas.height/3.0);
-    ctx.font = " 30px Courier New";
-    ctx.textAlign = "center";
-    ctx.strokeText(phrase1, canvas.width/2, canvas.height/1.9);
-    ctx.font = "30px Courier New";
-    ctx.textAlign = "center";
-    ctx.strokeText("wanna try again?", canvas.width/2, canvas.height/1.5);
-}
+// EVENT LISTENER LOAD
+window.addEventListener("load", function(event) {
+  // EVENT LISTENER LET'S PLAY BUTTON
+  document.querySelector("#startbtn").addEventListener("click", function() {
+      game()
+      start()
+      chronometer.startClock(printTime, printMilliseconds);
+      // BEGIN COUNTDOWN
+      let count = 0 
+      // CHANGE COLORS
+      let intervaloCores = setInterval(setColor, 1000); 
+      
+      // CLASS CIRCLE
+      class Circle {
+      constructor(xpoint, ypoint, radius, color) {
+          this.xpoint = xpoint;
+          this.ypoint = ypoint;
+          this.radius = radius;
+          this.color = color;
+      }
+      // DRAW A CIRCLE
+      draw(context) {
+          context.beginPath();
+          context.arc(this.xpoint, this.ypoint, this.radius, 0, Math.PI * 2, false)
+          context.strokeStyle = "white"
+          context.linewidth = 3
+          context.fillStyle = this.color
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = "black";
+          context.fill();
+          context.stroke();
+          context.closePath();
+      }
+      // MOVE THE CIRCLE
+      moveBall(){
+          this.xpoint = moveRandom(canvas.width);
+          this.ypoint = moveRandom(canvas.height);  
+      }
+      // SEE USER CLICK EVENT
+      clickCircle(xmouse, ymouse) {
+          const distance = Math.sqrt(
+              ( (xmouse - this.xpoint) * (xmouse - this.xpoint)) + ((ymouse - this.ypoint) * (ymouse - this.ypoint))
+              );
+              if (distance < this.radius) {
+                count++
+                  console.log(count)
+              } else {
+                  gameOver()
+              }
+          }
+      }
+      // INITIALIZE MY BALL
+      let myBall = new Circle(100,100,50, "white")
+      // DRAW MY BALL
+      myBall.draw(ctx)
+      // GET A RANDOM NUMBER
+      function moveRandom(axis) {
+      return Math.floor(Math.random()*axis);
+      }
+      // INCRASE DIFFICULTY
+      let seconds = 1500
+      let gameTime = 15000
+      // LEVEL FUNCTION
+      function level(difficulty, seconds) {
+        if (difficulty === "easy") {
+            seconds
+        } else if (difficulty === "medium") {
+            seconds -= 500
+        } else {
+            seconds -= 400
+        }
+      }
+      // INTERVAL FOR BALL MOVING
+      var moving;
+      function ballMoving() {
+        moving = setInterval(function() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          myBall.moveBall()
+          myBall.draw(ctx)
+        }, seconds)
+      }
+      ballMoving()
+      // TIMEOUT TO START ANOTHER LEVEL
+      let timeOut = setTimeout(function(){ 
+        clearInterval(moving); 
+      }, gameTime);
+      // START BUTTON
+      function start() {
+          level("easy", 15000)
+          setTimeout( function() {level("medium"), 10000}, 15000 )
+          setTimeout( function() {level("hard"), 10000}, 25000  )
+      }
+      // CHANGE BACKGROUND COLOR
+      function setColor() {
+          canvas.style.backgroundColor = canvas.style.backgroundColor == "olive" ? "gold" : "olive";
+      }
+      // GAME OVER SCREEN
+      function gameOver() {
+        rstrt.style.display = "block"
+        let phrase1 = `score: ${count} clicks`
+        let phrase2 = `time: ${chronometer.split()}`
+        let inputted = document.getElementsByTagName("input")[0].value;
+        let userName = `NICE TRY ${inputted}!`
+        clearInterval(moving)
+        clearInterval(intervaloCores)
+        clearTimeout(timeOut)
+        gameOverAudio.play()
+        startText.style.display = 'none';
+        box1.style.display = "none";
+        box2.style.display = "none";
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        canvas.style.backgroundColor = "gold"
+        ctx.font = "800 70px Courier New";
+        ctx.fillStyle = "red";
+        ctx.textAlign = "center";
+        ctx.fillText(userName, canvas.width/2, canvas.height/3.5);
+        ctx.font = " 30px Courier New";
+        ctx.textAlign = "center";
+        ctx.strokeText(phrase1, canvas.width/2, canvas.height/2.3);
+        ctx.font = " 30px Courier New";
+        ctx.textAlign = "center";
+        ctx.strokeText(phrase2, canvas.width/2, canvas.height/1.8);
+        clearInterval(this.intervalId);
+        clearInterval(this.millisecondsIntervalId);
+        ctx.strokeText("wanna try again?", canvas.width/2, canvas.height/1.3);
+    
+      }
+      //EVENT LISTENER FOR CLICK 
+      canvas.addEventListener("click", (event) => {
+      const c = canvas.getBoundingClientRect();
+      const x = event.clientX - c.left
+      const y = event.clientY - c.top
+      myBall.clickCircle(x,y)
+      })
+      // EVENT LISTENER FOR RESTART BUTTON
+      document.getElementById("rstrt").addEventListener("click", function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        setInterval(setColor, 1000); // change colors
+        chronometer.stop()
+        chronometer.reset()
+        /*minDecElement.innerHTML = 0;
+        minUniElement.innerHTML = 0;
+        secDecElement.innerHTML = 0;
+        secUniElement.innerHTML = 0;
+        milDecElement.innerHTML = 0;
+        milUniElement.innerHTML = 0;
+        */
+        game()
+        myBall.draw(ctx) 
+        ballMoving()   
+        start()
+      })
+  });
+  // CLASS CHRONOMETER
+   class Chronometer {
+    constructor() {
+      this.currentTime = 0;
+      this.intervalId = null;
+      this.currentMilliseconds = 0; 
+      this.millisecondsIntervalId = 0 
+    }
+    startClock(callback, printMilliseconds) {
+      this.intervalId = setInterval( () => {
+        this.currentTime++;
+        if (callback) callback();
+      }, 1000);
+  
+      this.millisecondsIntervalId = setInterval( () => {
+        if (this.currentMilliseconds === 99) {
+          this.currentMilliseconds = 0;
+        }
+        this.currentMilliseconds += 1;
+        if (printMilliseconds) printMilliseconds();
+      }, 10);
+    }
+    getMinutes() {
+        let currentTimeMin = Math.floor(this.currentTime / 60);
+        console.log(currentTimeMin)
+        return currentTimeMin;
+      }
+      getSeconds() {
+        let currentTimeSec = this.currentTime % 60;
+        return currentTimeSec;
+      }
+      computeTwoDigitNumber(value) {
+        return ("0" + value).slice(-2);
+      }
+      stop() {
+        clearInterval(this.intervalId);
+        clearInterval(this.millisecondsIntervalId);
+      }
+      reset() {
+        this.currentTime = 0;
+        this.currentMilliseconds = 0;
+      }
+      split() {
+        let minutes = this.computeTwoDigitNumber(this.getMinutes());
+        let seconds = this.computeTwoDigitNumber(this.getSeconds());
+        let milliseconds = this.computeTwoDigitNumber(this.currentMilliseconds); // <= BONUS 
+        let records = `${minutes}:${seconds}:${milliseconds}`
+        return records;
+      }
+    }
+    const chronometer = new Chronometer();
+    // DOM FOR TIMER
+    let minDecElement = document.getElementById('minDec');
+    let minUniElement = document.getElementById('minUni');
+    let secDecElement = document.getElementById('secDec');
+    let secUniElement = document.getElementById('secUni');
+    let milDecElement = document.getElementById('milDec');
+    let milUniElement = document.getElementById('milUni');
+    let splitsElement = document.getElementById('splits');
+    
+    function printTime() {
+      printMinutes();
+      printSeconds();
+      printMilliseconds()
+    }
+    
+    function printMinutes() {
+      let minutes = chronometer.computeTwoDigitNumber(chronometer.getMinutes());
+      minDecElement.innerHTML = minutes[0];
+      minUniElement.innerHTML = minutes[1];
+    }
+    
+    function printSeconds() {
+      let seconds = chronometer.computeTwoDigitNumber(chronometer.getSeconds());
+      secDecElement.innerHTML = seconds[0];
+      secUniElement.innerHTML = seconds[1];
+    }
+    
+    function printMilliseconds() {
+      let milliseconds = chronometer.computeTwoDigitNumber(chronometer.currentMilliseconds);
+      milDecElement.innerHTML = milliseconds[0];
+      milUniElement.innerHTML = milliseconds[1];
+    }
+  });
