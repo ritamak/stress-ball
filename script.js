@@ -26,7 +26,6 @@ final.style.display = "none";
 finalText.style.display = "none";
 rstrt.style.display = "none";
 // CANVAS TEXT
-
 const begin = () => {
     ctx.font = "20px Courier New";
     ctx.textAlign = "center";

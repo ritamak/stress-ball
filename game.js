@@ -2,6 +2,8 @@
 window.addEventListener("load", function(event) {
   // EVENT LISTENER LET'S PLAY BUTTON
   document.querySelector("#startbtn").addEventListener("click", function() {
+      // INCRASE DIFFICULTY
+      let seconds = 1500;
       game(); // start canvas
       start(); // start game
       chronometer.startClock(printTime, printMilliseconds); 
@@ -30,10 +32,10 @@ window.addEventListener("load", function(event) {
           context.stroke();
           context.closePath();
       }
-      // MOVE THE CIRCLE
+      // MOVE THE CIRCLE TO A RANDOM PLACE
       moveBall(){
-          this.xpoint = moveRandom(canvas.width - 300);
-          this.ypoint = moveRandom(canvas.height - 300);  
+          this.xpoint = Math.floor(Math.random() * (canvas.width - 100)) + 50;
+          this.ypoint = Math.floor(Math.random() * (canvas.height - 100)) + 50;  
       }
       // SEE USER CLICK EVENT
       clickCircle(xmouse, ymouse) {
@@ -42,33 +44,30 @@ window.addEventListener("load", function(event) {
               );
               if (distance < this.radius) {
                 count++
-                canvas.style.cursor = "grabbing";
-                canvas.style.cursor = "grab";
+                console.log(count)
               } else {
                   gameOver()
               }
           }
       }
       // INITIALIZE MY BALL
-      let myBall = new Circle(100,100,50, "white");
+      let myBall = new Circle(60, 60, 50, "white");
       // DRAW MY BALL
       myBall.draw(ctx);
-      // GET A RANDOM NUMBER
-      function moveRandom(axis) {
-      return Math.floor(Math.random()*axis);
-      };
-      // INCRASE DIFFICULTY
-      let seconds = 1500;
-      let gameTime = 15000;
       // LEVEL FUNCTION
-      function level(difficulty, seconds) {
+      function level(difficulty) {
         if (difficulty === "easy") {
-            seconds
+            seconds = 2000
         } else if (difficulty === "medium") {
-            seconds -= 500;
+            seconds = 1000 ;
         } else {
-            seconds -= 400;
+            seconds = 500;
+            
         }
+        ballMoving()
+        setTimeout(function(){ 
+          clearInterval(moving); 
+        }, 10000);
       };
       // INTERVAL FOR BALL MOVING
       var moving;
@@ -79,16 +78,15 @@ window.addEventListener("load", function(event) {
           myBall.draw(ctx);
         }, seconds)
       };
-      ballMoving()
       // TIMEOUT TO START ANOTHER LEVEL
-      let timeOut = setTimeout(function(){ 
+/*       let timeOut = setTimeout(function(){ 
         clearInterval(moving); 
-      }, gameTime);
+      }, 20000); */
       // START BUTTON
       function start() {
-          level("easy", 15000);
-          setTimeout( function() {level("medium"), 10000}, 15000 );
-          setTimeout( function() {level("hard"), 10000}, 25000  );
+          level("easy");
+          setTimeout( function() {level("medium")}, 10000 );
+          setTimeout( function() {level("hard")}, 20000  );
       };
       // CHANGE BACKGROUND COLOR
       function setColor() {
@@ -104,7 +102,7 @@ window.addEventListener("load", function(event) {
         // CLEAR INTERVALS & TIMEOUTS & CHRONO
         clearInterval(intervaloCores);
         clearInterval(moving);
-        clearTimeout(timeOut);
+        clearTimeout()
         gameOverAudio.play();
         chronometer.stop()
         // VARIABLES NEEDED FOR CANVAS TEXT
@@ -131,32 +129,25 @@ window.addEventListener("load", function(event) {
       };
       //EVENT LISTENER FOR THE MOUSE CLICK IN THE BALL / CANVAS 
       canvas.addEventListener("click", (event) => {
-      const c = canvas.getBoundingClientRect();
-      const x = event.clientX - c.left;
-      const y = event.clientY - c.top;
-      myBall.clickCircle(x,y);
+        const c = canvas.getBoundingClientRect();
+        const x = event.clientX - c.left;
+        const y = event.clientY - c.top;
+        myBall.clickCircle(x,y);
       });
       // EVENT LISTENER FOR RESTART BUTTON
-        document.getElementById("rstrt").addEventListener("click", function() {
-        // FUNCTION FOR THE RESTART BTN
+      document.getElementById("rstrt").addEventListener("click", function() {
+        // FUNCTION FOR THE RESTART BTN  
+        count = 0
         chronometer.stop()
         chronometer.reset() 
+        myBall.draw(ctx)
         game(); // start canvas
         start(); // start game
-        myBall.draw(ctx)
-        ballMoving()
-        canvas.addEventListener("click", (event) => {
-          const c = canvas.getBoundingClientRect();
-          const x = event.clientX - c.left;
-          const y = event.clientY - c.top;
-          myBall.clickCircle(x,y);
-          });
-          canvas.style.backgroundColor = "gold";
-          function setColor2() {
-            canvas.style.backgroundColor = canvas.style.backgroundColor == "gold" ? "olive" : "gold";
-          }
-          count = 0
+        canvas.style.backgroundColor = "gold";
+        function setColor2() {
+          canvas.style.backgroundColor = canvas.style.backgroundColor == "gold" ? "olive" : "gold";  
+        }
         chronometer.startClock(printTime, printMilliseconds); // start chronometer
-  });
-  });
+      });
+    });
   });
