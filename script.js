@@ -39,19 +39,19 @@ const begin = () => {
     ctx.font = "800 30px Courier New";
     ctx.fillStyle = "gold";
     ctx.textAlign = "center";
-    ctx.shadowBlur = 20;
+    ctx.shadowBlur = 5;
     ctx.shadowColor = "black";
     ctx.fillText("squeeze (click) in the ball when it appears on your screen", canvas.width/2, canvas.height/2.1);
     ctx.font = "800 30px Courier New";
     ctx.fillStyle = "gold";
     ctx.textAlign = "center";
-    ctx.shadowBlur = 20;
+    ctx.shadowBlur = 5;
     ctx.shadowColor = "black";
     ctx.fillText("if you fail to squeeze it, you will lose", canvas.width/2, canvas.height/1.7);
     ctx.font = "1000 50px Courier New";
     ctx.fillStyle = "red";
     ctx.textAlign = "center";
-    ctx.shadowBlur = 20;
+    ctx.shadowBlur = 5;
     ctx.shadowColor = "black";
     ctx.fillText("ARE YOU READY?", canvas.width/2, canvas.height/1.2);
 
@@ -61,7 +61,7 @@ begin()
 const game = () => {
     startText.style.display = 'none';
     box1.style.display = "block";
-    box1.innerText = "Level 1"
+    box1.innerText = "level 1"
     box1.style.textAlign = "center";
     box1.style.backgroundColor = "#edecdf";
     box2.style.display = "block";
