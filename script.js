@@ -13,6 +13,10 @@ let gameOverAudio = new Audio(" https://res.cloudinary.com/manishp/video/upload/
 canvas.style.display = 'block';
 canvas.style.border = '2px solid black'
 canvas.style.backgroundColor = "olive"
+//CURSOR 
+canvas.style.cursor = "grab";
+rstrt.style.cursor = "pointer";
+startBtn.style.cursor = "pointer";
 // PAINTBRUSH
 let ctx = canvas.getContext('2d')
 // HIDE BOXES
