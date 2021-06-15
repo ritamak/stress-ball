@@ -3,12 +3,10 @@ let canvas = document.querySelector("#myCanvas");
 let startBtn = document.querySelector("#startbtn")
 let box1 = document.querySelector("#box1")
 let box2 = document.querySelector("#sphere")
-let final = document.querySelector("#final")
-let finalText = document.querySelector("#finalText")
 let rstrt = document.querySelector("#rstrt")
 // AUDIO
-let startAudio = new Audio("https://res.cloudinary.com/manishp/video/upload/v1623305320/Horizon_Zero_Dawn_OST_-_Years_Of_Training_badkhk.mp3")
-let gameOverAudio = new Audio(" https://res.cloudinary.com/manishp/video/upload/v1615874740/aom/home_bhfqfk.mp3")
+let themeAudio = document.getElementById("myThemeSong")
+let gameOverTheme = document.getElementById("myGameoverTheme")
 // CANVAS
 canvas.style.display = 'block';
 canvas.style.border = '2px solid black'
@@ -22,8 +20,6 @@ let ctx = canvas.getContext('2d')
 // HIDE BOXES
 box1.style.display = "none";
 box2.style.display = "none";
-final.style.display = "none";
-finalText.style.display = "none";
 rstrt.style.display = "none";
 // CANVAS TEXT
 const begin = () => {
@@ -67,7 +63,7 @@ const game = () => {
     box1.style.backgroundColor = "#edecdf";
     box2.style.display = "block";
     rstrt.style.display = "none";
-    startAudio.play()
-    startAudio.volume = 0.1
+    themeAudio.play()
+    themeAudio.volume = 0.1
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 };
