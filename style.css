@@ -55,9 +55,7 @@ h1 {
     text-shadow: 2px 2px 5px grey;
     margin-right: 0px;
     margin-left: 30px;
-
 }
-
  #startbtn {
     height: 60px;
     width: 20%;
@@ -75,7 +73,6 @@ h1 {
     margin-right: 75px;
     margin-left: 0px;
  }
-
 #boxes {
     margin-top: 4px;
 	display: flex; 
@@ -90,11 +87,13 @@ h1 {
     margin-right: 5px;
     border: 1px solid black;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 44px;
+    font-size: 30px;
     border-radius: 15px;
-    background-color: #d6d4d0;
+    background-color: #979592;
     border-color: #d6d4d0;
     text-shadow: 2px 2px 5px grey;
+    font-weight: bolder;
+    text-align: center;
 }
 #sphere {
     height: 60px;
@@ -110,7 +109,6 @@ h1 {
     text-shadow: 2px 2px 5px grey;
     border-color: #d6d4d0;
 }
-
 #final{
     margin-top: 4px;
 	display: flex; 
@@ -119,7 +117,6 @@ h1 {
     align-items: center;
     height: 90px;
 }
-
 #finalText {
     height: 90px;
     width: 550px;
@@ -133,7 +130,6 @@ h1 {
     display: flex;
     flex-direction: column;
     align-self: center;
-
 }
 #rstrt{
     display: flex;
@@ -155,13 +151,9 @@ h1 {
     border-color: red;
     background-color: red;
     text-shadow: 2px 2px 18px grey;
-    
 }
-
 #minDec #minUni #secDec #secUni #milliseconds #milDec #milUni {
     display:flex;
     flex-direction: column;
-    background-color: aqua;
-    
 }
 

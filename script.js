@@ -57,14 +57,12 @@ const begin = () => {
     ctx.shadowBlur = 5;
     ctx.shadowColor = "black";
     ctx.fillText("ARE YOU READY?", canvas.width/2, canvas.height/1.2);
-
-}
+};
 begin()
 // GAME DISPLAY
 const game = () => {
     startText.style.display = 'none';
     box1.style.display = "block";
-    box1.innerText = "level 1"
     box1.style.textAlign = "center";
     box1.style.backgroundColor = "#edecdf";
     box2.style.display = "block";

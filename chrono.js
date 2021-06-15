@@ -46,7 +46,7 @@
       let records = `${minutes}:${seconds}:${milliseconds}`
       return records;
     }
-  }
+  };
   const chronometer = new Chronometer();
   // DOM FOR TIMER
   let minDecElement = document.getElementById('minDec');

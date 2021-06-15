@@ -4,6 +4,8 @@ window.addEventListener("load", function(event) {
   document.querySelector("#startbtn").addEventListener("click", function() {
       // INCRASE DIFFICULTY
       let seconds = 1500;
+      let scoreBoard = []
+      let lastScores;
       game(); // start canvas
       start(); // start game
       chronometer.startClock(printTime, printMilliseconds); 
@@ -58,11 +60,13 @@ window.addEventListener("load", function(event) {
       function level(difficulty) {
         if (difficulty === "easy") {
             seconds = 2000
+            box1.innerHTML = "level|easy"
         } else if (difficulty === "medium") {
             seconds = 1000 ;
+            box1.innerHTML = "level|medium"
         } else {
             seconds = 500;
-            
+            box1.innerHTML = "level|hard"            
         }
         ballMoving()
         setTimeout(function(){ 
@@ -78,10 +82,6 @@ window.addEventListener("load", function(event) {
           myBall.draw(ctx);
         }, seconds)
       };
-      // TIMEOUT TO START ANOTHER LEVEL
-/*       let timeOut = setTimeout(function(){ 
-        clearInterval(moving); 
-      }, 20000); */
       // START BUTTON
       function start() {
           level("easy");
@@ -94,6 +94,14 @@ window.addEventListener("load", function(event) {
       };
       // GAME OVER SCREEN
       const gameOver = () => {
+        if (box1.style.display === "block") {
+          scoreBoard.push(count)
+          console.log(scoreBoard)
+          lastScores = scoreBoard.join(' | ')
+
+        } else {
+          null
+        }
         // DOM TO HIDE / SHOW
         rstrt.style.display = "block";
         box1.style.display = "none";
@@ -102,7 +110,10 @@ window.addEventListener("load", function(event) {
         // CLEAR INTERVALS & TIMEOUTS & CHRONO
         clearInterval(intervaloCores);
         clearInterval(moving);
-        clearTimeout()
+        var found;
+        for (i=0; i<10000; i++) {
+          window.clearTimeout(i);
+        }
         gameOverAudio.play();
         chronometer.stop()
         // VARIABLES NEEDED FOR CANVAS TEXT
@@ -110,6 +121,7 @@ window.addEventListener("load", function(event) {
         let phrase2 = `time: ${chronometer.split()}`;
         let inputted = document.getElementsByTagName("input")[0].value;
         let userName = `NICE TRY ${inputted.toUpperCase()}!`;
+        let scores = `last scores: ${lastScores}`
         //c CANVAS
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         canvas.style.backgroundColor = "gold";
@@ -123,9 +135,14 @@ window.addEventListener("load", function(event) {
         ctx.font = " 30px Courier New";
         ctx.textAlign = "center";
         ctx.strokeText(phrase2, canvas.width/2, canvas.height/1.8);
+        if (scoreBoard.length > 1) {
+          ctx.font = " 30px Courier New";
+          ctx.textAlign = "center";
+          ctx.strokeText(scores, canvas.width/2, canvas.height/1.5);
+        }
         clearInterval(this.intervalId);
         clearInterval(this.millisecondsIntervalId);
-        ctx.strokeText("wanna try again?", canvas.width/2, canvas.height/1.3);
+        ctx.strokeText("wanna try again?", canvas.width/2, canvas.height/1.2);
       };
       //EVENT LISTENER FOR THE MOUSE CLICK IN THE BALL / CANVAS 
       canvas.addEventListener("click", (event) => {
@@ -136,17 +153,20 @@ window.addEventListener("load", function(event) {
       });
       // EVENT LISTENER FOR RESTART BUTTON
       document.getElementById("rstrt").addEventListener("click", function() {
-        // FUNCTION FOR THE RESTART BTN  
+        // FUNCTION FOR THE RESTART BTN
+        gameOverAudio.pause()  
         count = 0
         chronometer.stop()
-        chronometer.reset() 
+        chronometer.reset()
+        document.getElementById("minDec").innerHTML = 0
+        document.getElementById("minUni").innerHTML = 0
+        document.getElementById("secDec").innerHTML = 0
+        document.getElementById("secUni").innerHTML = 0
+        startAudio.play() 
         myBall.draw(ctx)
         game(); // start canvas
         start(); // start game
-        canvas.style.backgroundColor = "gold";
-        function setColor2() {
-          canvas.style.backgroundColor = canvas.style.backgroundColor == "gold" ? "olive" : "gold";  
-        }
+        setInterval(setColor, 1000)
         chronometer.startClock(printTime, printMilliseconds); // start chronometer
       });
     });
