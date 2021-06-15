@@ -5,18 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>jogoRascunho</title>
+    <title>stress|ball by Rita Mak</title>
 </head>
 <body>
     <h1>stress|ball</h1>
     <div id="canvasWrapper">
        <canvas id="myCanvas" width="1200" height="550"></canvas>
     </div>
-    <div id="startText"> <!--Nao apagar isto ou o start nao funciona-->
+    <div id="startText"> 
         <div id="userInput">
             <label for="fname" id="startkitText">type your name here:</label>
             <input type="text" id="startkitUser">
-         </div>
+        </div>
          <button type="submit" id="startbtn">let's play!</button>
         </div>
         <div id="restart">
@@ -33,14 +33,14 @@
             <span>:</span>
             <span id="milDec">0</span>
             <span id="milUni">0</span>
-    </div>
+        </div>
     </div>
     <audio id="myThemeSong">
         <source src="stressBallTheme.mp3" type="audio/mpeg">
-      </audio>
-      <audio id="myGameoverTheme">
+    </audio>
+    <audio id="myGameoverTheme">
         <source src="gameOverTheme.mp3" type="audio/mpeg">
-      </audio>
+    </audio>
     <script src="./script.js"></script>
     <script src="game.js"></script>
     <script src="chrono.js"></script>

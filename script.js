@@ -4,37 +4,36 @@ let startBtn = document.querySelector("#startbtn")
 let box1 = document.querySelector("#box1")
 let box2 = document.querySelector("#sphere")
 let rstrt = document.querySelector("#rstrt")
-// AUDIO
 let themeAudio = document.getElementById("myThemeSong")
 let gameOverTheme = document.getElementById("myGameoverTheme")
-// CANVAS
-canvas.style.display = 'block';
-canvas.style.border = '2px solid black'
-canvas.style.backgroundColor = "olive"
 //CURSOR 
 canvas.style.cursor = "grab";
 rstrt.style.cursor = "pointer";
 startBtn.style.cursor = "pointer";
 // PAINTBRUSH
 let ctx = canvas.getContext('2d')
-// HIDE BOXES
-box1.style.display = "none";
-box2.style.display = "none";
-rstrt.style.display = "none";
+let seconds = 1500; // INCRASE DIFFICULTY
+let scoreBoard = []; // SCORE BOARD ARRAY
+let lastScores; // FOR THE SCORE BOARD IN CANVAS
+let count = 0; // FOR KEEPING SCORES
 // CANVAS TEXT
 const begin = () => {
+    box1.style.display = "none";
+    box2.style.display = "none";
+    rstrt.style.display = "none";
+    canvas.style.display = 'block';
+    canvas.style.border = '2px solid black';
+    canvas.style.backgroundColor = "olive";
     ctx.font = "20px Courier New";
     ctx.textAlign = "center";
     ctx.strokeStyle = "white";
-    ctx.strokeText("studies show that squeezing a ball can raise your heart rate", 
-    canvas.width/2, canvas.height/5.0);
+    ctx.strokeText("studies show that squeezing a ball can raise your heart rate", canvas.width/2, canvas.height/5.0);
     ctx.font = "20px Courier New";
     ctx.textAlign = "center";
     ctx.strokeText("and increase the oxygen levels in your brain", canvas.width/2, canvas.height/3.8);
     ctx.font = "20px Courier New";
     ctx.textAlign = "center";
-    ctx.strokeText("as a result, your heart will pump harder and thus provide better blood circulation", 
-    canvas.width/2, canvas.height/3.0);
+    ctx.strokeText("as a result, your heart will pump harder and thus provide better blood circulation", canvas.width/2, canvas.height/3.0);
     ctx.font = "800 30px Courier New";
     ctx.fillStyle = "gold";
     ctx.textAlign = "center";
@@ -54,7 +53,9 @@ const begin = () => {
     ctx.shadowColor = "black";
     ctx.fillText("ARE YOU READY?", canvas.width/2, canvas.height/1.2);
 };
-begin()
+window.addEventListener("load", function(event) {
+    begin()
+});
 // GAME DISPLAY
 const game = () => {
     startText.style.display = 'none';
@@ -63,7 +64,7 @@ const game = () => {
     box1.style.backgroundColor = "#edecdf";
     box2.style.display = "block";
     rstrt.style.display = "none";
-    themeAudio.play()
-    themeAudio.volume = 0.1
+    themeAudio.play();
+    themeAudio.volume = 0.1;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 };
