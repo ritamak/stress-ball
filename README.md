@@ -1,6 +1,6 @@
 # stress|ball
-http://github.com/ritamak/stress-ball
-https://ritamak.github.io/stress-ball/
+- http://github.com/ritamak/stress-ball
+- https://ritamak.github.io/stress-ball/
 
 ## Description
 stress|ball is a game to test how quick is your reaction. 
@@ -10,21 +10,22 @@ There are three levels. The "easy", the "medium" and the "hard". The velocity of
 stress|ball has a very minimalistic layout. It is for every one, but it is design for an older audience or young children.
 
 ## MVP
-- Game screen with a ball moving to random places,
-- Background alternating between two colors to make a more stressful environment for the user,
-- Game over screen if the user fails to click inside the white ball,
-- Restart button
+- game screen with a ball moving to random places,
+- background alternating between two colors to make a more stressful environment for the user,
+- game over screen if the user fails to click inside the white ball,
+- restart button
 
 ## Backlog
-- Splash screen with the game introduction,
-- Increasing dificulty in the game,
-- Count of the number of time he user clicks in the white ball,
+- splash screen with the game introduction,
+- increasing dificulty in the game,
+- count of the number of time he user clicks in the white ball,
 - timer to track the minutes/seconds of the game,
-- Add a black ball in the last level,
+- add a black ball in the last level,
 - last scores of the user, if the user plays more than one time
 
 ## Data structure
-###scipt.js
+
+### scipt.js
 - script - build the dom,
 - script - change the cursor,
 - script - draw canvas,
@@ -32,7 +33,7 @@ stress|ball has a very minimalistic layout. It is for every one, but it is desig
 - scirpt - addEventListener (load),
 - script - build canvas game screen
 
-###game.js
+### game.js
 - game - addEventListener (start button),
 - game - Class Circle,
 - game - initialize ball,
@@ -46,7 +47,7 @@ stress|ball has a very minimalistic layout. It is for every one, but it is desig
 - game - addEventListener (mouse),
 - game - addEventListener (restart button),
 
-###chronometer.js
+### chronometer.js
 - chrono - class Chronometer,
 - chrono - DOM for Chronometer,
 - chrono - function printTime,
