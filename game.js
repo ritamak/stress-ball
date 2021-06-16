@@ -72,7 +72,7 @@ document.querySelector("#startbtn").addEventListener("click", function() {
     }
     ballMoving();
     setTimeout(function(){ 
-      clearInterval(moving); 
+      clearInterval(moving);
     }, 10000);
   };
   // INTERVAL FOR BALL MOVING
@@ -105,6 +105,10 @@ document.querySelector("#startbtn").addEventListener("click", function() {
   };
   // GAME OVER SCREEN
   const gameOver = () => {
+      // CLEAR INTERVALS & TIMEOUTS & CHRONO
+  clearInterval(intervaloCores); // STOP CHANGING BACKGROUND COLORS
+  clearInterval(moving2)
+  clearInterval(moving); // STOP BALL FROM MOVING
     themeAudio.pause()
     if (box1.style.display === "block") {
       scoreBoard.push(count);
@@ -118,10 +122,6 @@ document.querySelector("#startbtn").addEventListener("click", function() {
   box1.style.display = "none";
   box2.style.display = "none";
   startText.style.display = 'none';
-  // CLEAR INTERVALS & TIMEOUTS & CHRONO
-  clearInterval(intervaloCores); // STOP CHANGING BACKGROUND COLORS
-  clearInterval(moving); // STOP BALL FROM MOVING
-  clearInterval(moving2)
   for (i=0; i<10000; i++) {
     window.clearTimeout(i);
   }
@@ -144,13 +144,16 @@ document.querySelector("#startbtn").addEventListener("click", function() {
   ctx.fillText(userName, canvas.width/2, canvas.height/3.5);
   ctx.font = " 30px Courier New";
   ctx.textAlign = "center";
+  ctx.strokeStyle = "white";
   ctx.strokeText(phrase1, canvas.width/2, canvas.height/2.3);
   ctx.font = " 30px Courier New";
   ctx.textAlign = "center";
+  ctx.strokeStyle = "white";
   ctx.strokeText(phrase2, canvas.width/2, canvas.height/1.8);
   if (scoreBoard.length > 1) {
     ctx.font = " 30px Courier New";
     ctx.textAlign = "center";
+    ctx.strokeStyle = "white";
     ctx.strokeText(scores, canvas.width/2, canvas.height/1.5);
   }
   clearInterval(this.intervalId);
