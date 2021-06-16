@@ -4,7 +4,7 @@
     this.currentTime = 0;
     this.intervalId = null;
     this.currentMilliseconds = 0; 
-    this.millisecondsIntervalId = 0 
+    this.millisecondsIntervalId = 0;
   }
   startClock(callback, printMilliseconds) {
     this.intervalId = setInterval( () => {
@@ -42,7 +42,7 @@
     let minutes = this.computeTwoDigitNumber(this.getMinutes());
     let seconds = this.computeTwoDigitNumber(this.getSeconds());
     let milliseconds = this.computeTwoDigitNumber(this.currentMilliseconds); // <= BONUS 
-    let records = `${minutes}:${seconds}:${milliseconds}`
+    let records = `${minutes}:${seconds}:${milliseconds}`;
     return records;
   }
 };
@@ -59,7 +59,7 @@ let splitsElement = document.getElementById('splits');
 const printTime = () => {
   printMinutes();
   printSeconds();
-  printMilliseconds()
+  printMilliseconds();
 };  
 const printMinutes = () => {
   let minutes = chronometer.computeTwoDigitNumber(chronometer.getMinutes());

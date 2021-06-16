@@ -1,11 +1,11 @@
 // DOM
 let canvas = document.querySelector("#myCanvas");
-let startBtn = document.querySelector("#startbtn")
-let box1 = document.querySelector("#box1")
-let box2 = document.querySelector("#sphere")
-let rstrt = document.querySelector("#rstrt")
-let themeAudio = document.getElementById("myThemeSong")
-let gameOverTheme = document.getElementById("myGameoverTheme")
+let startBtn = document.querySelector("#startbtn");
+let box1 = document.querySelector("#box1");
+let box2 = document.querySelector("#sphere");
+let rstrt = document.querySelector("#rstrt");
+let themeAudio = document.getElementById("myThemeSong");
+let gameOverTheme = document.getElementById("myGameoverTheme");
 //CURSOR 
 canvas.style.cursor = "grab";
 rstrt.style.cursor = "pointer";
@@ -39,7 +39,7 @@ const begin = () => {
     ctx.textAlign = "center";
     ctx.shadowBlur = 5;
     ctx.shadowColor = "black";
-    ctx.fillText("squeeze (click) in the ball when it appears on your screen", canvas.width/2, canvas.height/2.1);
+    ctx.fillText("squeeze (click in) the WHITE ball when it appears on your screen", canvas.width/2, canvas.height/2.1);
     ctx.font = "800 30px Courier New";
     ctx.fillStyle = "gold";
     ctx.textAlign = "center";
@@ -54,7 +54,7 @@ const begin = () => {
     ctx.fillText("ARE YOU READY?", canvas.width/2, canvas.height/1.2);
 };
 window.addEventListener("load", function(event) {
-    begin()
+    begin();
 });
 // GAME DISPLAY
 const game = () => {

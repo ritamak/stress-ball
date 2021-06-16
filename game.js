@@ -1,9 +1,5 @@
 // EVENT LISTENER LET'S PLAY BUTTON
 document.querySelector("#startbtn").addEventListener("click", function() {
-  let seconds = 1500; // INCRASE DIFFICULTY
-  let scoreBoard = []; // SCORE BOARD ARRAY
-  let lastScores; // FOR THE SCORE BOARD IN CANVAS
-  let count = 0; // FOR KEEPING SCORES
   game(); // START CANVAS
   start(); // START GAME
   chronometer.startClock(printTime, printMilliseconds); // START CHRONOMETER
@@ -19,33 +15,34 @@ document.querySelector("#startbtn").addEventListener("click", function() {
     // DRAW A CIRCLE
     draw(context) {
       context.beginPath();
-      context.arc(this.xpoint, this.ypoint, this.radius, 0, Math.PI * 2, false)
-      context.strokeStyle = "white"
-      context.linewidth = 3
-      context.fillStyle = this.color
+      context.arc(this.xpoint, this.ypoint, this.radius, 0, Math.PI * 2, false);
+      context.strokeStyle = this.color;
+      context.linewidth = 3;
+      context.fillStyle = this.color;
       context.shadowBlur = 10;
       context.shadowColor = "black";
       context.fill();
       context.stroke();
       context.closePath();
-    }
+    };
     // MOVE THE CIRCLE TO A RANDOM PLACE
     moveBall(){
       this.xpoint = Math.floor(Math.random() * (canvas.width - 100)) + 50;
       this.ypoint = Math.floor(Math.random() * (canvas.height - 100)) + 50;  
-    }
+    };
     // SEE USER CLICK EVENT
     clickCircle(xmouse, ymouse) {
       const distance = Math.sqrt( ( ( xmouse - this.xpoint ) * ( xmouse - this.xpoint ) ) + ( ( ymouse - this.ypoint ) * ( ymouse - this.ypoint ) ) );
       if (distance < this.radius) {
-        count++
+        count++;
       } else {
-        gameOver()
+        gameOver();
       }
     }
-  }
-  // INITIALIZE MY BALL
+  };
+  // INITIALIZE MY BALLS
   let myBall = new Circle(60, 60, 50, "white");
+  let blackBall = new Circle(300, 400, 50, "black");
   // DRAW MY BALL
   myBall.draw(ctx);
   // LEVEL FUNCTION
@@ -53,12 +50,25 @@ document.querySelector("#startbtn").addEventListener("click", function() {
     if (difficulty === "easy") {
       seconds = 2000;
       box1.innerHTML = "level|easy";
+      ctx.font = "1000 50px Courier New";
+      ctx.fillStyle = "red";
+      ctx.textAlign = "center";
+      ctx.shadowBlur = 5;
+      ctx.shadowColor = "black";
+      ctx.fillText("WHO THE F USES SAFARI", canvas.width/2, canvas.height/1.2);  
     } else if (difficulty === "medium") {
       seconds = 1000;
       box1.innerHTML = "level|medium";
+      ctx.font = "1000 50px Courier New";
+      ctx.fillStyle = "red";
+      ctx.textAlign = "center";
+      ctx.shadowBlur = 5;
+      ctx.shadowColor = "black";
+      ctx.fillText("CHROME IS OVERATED", canvas.width/2, canvas.height/1.2);  
     } else {
       seconds = 500;
-      box1.innerHTML = "level|hard" ;           
+      box1.innerHTML = "level|hard";
+      blackBallMoving(); 
     }
     ballMoving();
     setTimeout(function(){ 
@@ -72,6 +82,14 @@ document.querySelector("#startbtn").addEventListener("click", function() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       myBall.moveBall();
       myBall.draw(ctx);
+    }, seconds)
+  };
+  // INTERVAL FOR BLACK BALL MOVING
+  function blackBallMoving() {
+    moving = setInterval(function() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      blackBall.moveBall();
+      blackBall.draw(ctx);
     }, seconds)
   };
   // START BUTTON
@@ -88,12 +106,12 @@ document.querySelector("#startbtn").addEventListener("click", function() {
   const gameOver = () => {
     themeAudio.pause()
     if (box1.style.display === "block") {
-      scoreBoard.push(count)
-      console.log(scoreBoard)
+      scoreBoard.push(count);
+      console.log(scoreBoard);
       lastScores = scoreBoard.join(' | ')
     } else {
-      null
-    }
+      null;
+    };
   // DOM TO HIDE / SHOW
   rstrt.style.display = "block";
   box1.style.display = "none";
@@ -106,15 +124,15 @@ document.querySelector("#startbtn").addEventListener("click", function() {
     window.clearTimeout(i);
   }
   gameOverTheme.load(); // RESTART GAME MUSIC
-  gameOverTheme.play() // PLAY GAME MUSIC
+  gameOverTheme.play(); // PLAY GAME MUSIC
   gameOverTheme.volume = 0.1; // VOLUME OF GAME MUSIC
-  chronometer.stop()
+  chronometer.stop();
   // VARIABLES NEEDED FOR CANVAS TEXT
   let phrase1 = `score: ${count} clicks`;
   let phrase2 = `time: ${chronometer.split()}`;
   let inputted = document.getElementsByTagName("input")[0].value;
   let userName = `NICE TRY ${inputted.toUpperCase()}!`;
-  let scores = `last scores: ${lastScores}`
+  let scores = `last scores: ${lastScores}`;
   //c CANVAS
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   canvas.style.backgroundColor = "gold";
@@ -147,19 +165,19 @@ document.querySelector("#startbtn").addEventListener("click", function() {
   // EVENT LISTENER FOR RESTART BUTTON
   document.getElementById("rstrt").addEventListener("click", function() {
   // FUNCTION FOR THE RESTART BTN
-  gameOverTheme.pause()  
-  count = 0
-  chronometer.stop()
-  chronometer.reset()
-  document.getElementById("minDec").innerHTML = 0
-  document.getElementById("minUni").innerHTML = 0
-  document.getElementById("secDec").innerHTML = 0
-  document.getElementById("secUni").innerHTML = 0
-  themeAudio.load()
-  myBall.draw(ctx) // DRAW BALL
+  gameOverTheme.pause();  
+  count = 0;
+  chronometer.stop();
+  chronometer.reset();
+  document.getElementById("minDec").innerHTML = 0;
+  document.getElementById("minUni").innerHTML = 0;
+  document.getElementById("secDec").innerHTML = 0;
+  document.getElementById("secUni").innerHTML = 0;
+  themeAudio.load();
+  myBall.draw(ctx); // DRAW BALL
   game(); // START CANVAS
   start(); // START GAME
-  setInterval(setColor, 1000) // COLOR INTERVAL
+  setInterval(setColor, 1000); // COLOR INTERVAL
   chronometer.startClock(printTime, printMilliseconds); // start chronometer
   });
 });
