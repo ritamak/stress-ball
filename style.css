@@ -51,6 +51,11 @@ h1 {
     font-family: 'Courier New', Courier, monospace;
     font-size: 30px;
     text-shadow: 2px 2px 5px grey;
+    user-select: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
 }
 #startkitText {
     height: 60px;
@@ -72,6 +77,11 @@ h1 {
     text-shadow: 2px 2px 5px grey;
     margin-right: 0px;
     margin-left: 30px;
+    user-select: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
 }
  #startbtn {
     height: 60px;
@@ -89,6 +99,11 @@ h1 {
     text-shadow: 2px 2px 5px grey;
     margin-right: 75px;
     margin-left: 0px;
+    user-select: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
  }
 #boxes {
     margin-top: 4px;
@@ -97,6 +112,11 @@ h1 {
 	justify-content: center; 
     align-items: center;
     height: 60px;
+    user-select: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
 }
 #box1 {
     height: 60px;
@@ -161,9 +181,19 @@ h1 {
     border-color: red;
     background-color: red;
     text-shadow: 2px 2px 18px grey;
+    user-select: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
 }
 #minDec #minUni #secDec #secUni #milliseconds #milDec #milUni {
     display:flex;
     flex-direction: column;
+    user-select: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
 }
 
