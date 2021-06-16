@@ -7,6 +7,11 @@ h1 {
     font-family: 'Courier New', Courier, monospace;
     text-shadow: 2px 2px 5px grey;
     font-size: 40px;
+    user-select: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none; 
 }
 #canvasWrapper { 
 	display: flex; 
@@ -106,6 +111,11 @@ h1 {
     text-shadow: 2px 2px 5px grey;
     font-weight: bolder;
     text-align: center;
+    user-select: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
 }
 #sphere {
     height: 60px;
@@ -120,6 +130,11 @@ h1 {
     font-size: 44px;
     text-shadow: 2px 2px 5px grey;
     border-color: #d6d4d0;
+    user-select: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
 }
 #restart {
     display: flex;

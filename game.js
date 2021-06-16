@@ -27,8 +27,8 @@ document.querySelector("#startbtn").addEventListener("click", function() {
     };
     // MOVE THE CIRCLE TO A RANDOM PLACE
     moveBall(){
-      this.xpoint = Math.floor(Math.random() * (canvas.width - 100)) + 50;
-      this.ypoint = Math.floor(Math.random() * (canvas.height - 100)) + 50;  
+      this.xpoint = Math.floor(Math.random() * (canvas.width - 100)) + 55;
+      this.ypoint = Math.floor(Math.random() * (canvas.height - 100)) + 55;  
     };
     // SEE USER CLICK EVENT
     clickCircle(xmouse, ymouse) {
