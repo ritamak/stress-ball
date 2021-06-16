@@ -11,13 +11,20 @@ h1 {
 #canvasWrapper { 
 	display: flex; 
 	justify-content: center;
+    justify-self: center;
+    align-items: center;
+    justify-items: center;
     border-radius: 15px;
     border: 1px solid rgb(158, 152, 152);
-    margin-left: 243px;
-    margin-right: 243px;
     overflow: hidden;
     width: 1190px;
     height: 550px;
+}
+#canvasCenter{
+    display: flex; 
+	justify-content: center;
+    justify-self: center;
+
 }
 #startText {
     margin-top: 4px;
