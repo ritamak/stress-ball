@@ -85,8 +85,9 @@ document.querySelector("#startbtn").addEventListener("click", function() {
     }, seconds)
   };
   // INTERVAL FOR BLACK BALL MOVING
+  var moving2
   function blackBallMoving() {
-    moving = setInterval(function() {
+    moving2 = setInterval(function() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       blackBall.moveBall();
       blackBall.draw(ctx);
@@ -120,6 +121,7 @@ document.querySelector("#startbtn").addEventListener("click", function() {
   // CLEAR INTERVALS & TIMEOUTS & CHRONO
   clearInterval(intervaloCores); // STOP CHANGING BACKGROUND COLORS
   clearInterval(moving); // STOP BALL FROM MOVING
+  clearInterval(moving2)
   for (i=0; i<10000; i++) {
     window.clearTimeout(i);
   }
