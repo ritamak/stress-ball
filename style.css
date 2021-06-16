@@ -1,3 +1,4 @@
+
 h1 {
     display: flex;
     flex-direction: row;
@@ -15,6 +16,8 @@ h1 {
     margin-left: 243px;
     margin-right: 243px;
     overflow: hidden;
+    width: 1190px;
+    height: 550px;
 }
 #startText {
     margin-top: 4px;
@@ -24,7 +27,7 @@ h1 {
 }
 #userInput {
     height: 60px;
-    width: 51%;
+    width: 900px;
     margin-right: 1px 1px;
     float: left;
     display: flex;
@@ -33,7 +36,6 @@ h1 {
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
     text-shadow: 2px 2px 5px grey;
-
 }
 #startkitText {
     height: 60px;
