@@ -91,7 +91,7 @@ document.querySelector("#startbtn").addEventListener("click", function() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       blackBall.moveBall();
       blackBall.draw(ctx);
-    }, seconds-150)
+    }, seconds-30)
   };
   // START BUTTON
   function start() {
