@@ -27,8 +27,8 @@ document.querySelector("#startbtn").addEventListener("click", function() {
     };
     // MOVE THE CIRCLE TO A RANDOM PLACE
     moveBall(){
-      this.xpoint = Math.floor(Math.random() * (canvas.width - 100)) + 55;
-      this.ypoint = Math.floor(Math.random() * (canvas.height - 100)) + 55;  
+      this.xpoint = Math.floor(Math.random() * (canvas.width - 110)) + 60;
+      this.ypoint = Math.floor(Math.random() * (canvas.height - 110)) + 60;  
     };
     // SEE USER CLICK EVENT
     clickCircle(xmouse, ymouse) {
@@ -66,7 +66,7 @@ document.querySelector("#startbtn").addEventListener("click", function() {
       ctx.shadowColor = "black";
       ctx.fillText("CHROME IS OVERATED", canvas.width/2, canvas.height/1.2);  
     } else {
-      seconds = 500;
+      seconds = 900;
       box1.innerHTML = "level|hard";
       blackBallMoving(); 
     }
