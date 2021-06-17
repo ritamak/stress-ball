@@ -127,7 +127,7 @@ document.querySelector("#startbtn").addEventListener("click", function() {
   }
   gameOverTheme.load(); // RESTART GAME MUSIC
   gameOverTheme.play(); // PLAY GAME MUSIC
-  gameOverTheme.volume = 0.1; // VOLUME OF GAME MUSIC
+  gameOverTheme.volume = 0.06; // VOLUME OF GAME MUSIC
   chronometer.stop();
   // VARIABLES NEEDED FOR CANVAS TEXT
   let phrase1 = `score: ${count} clicks`;
@@ -179,6 +179,7 @@ document.querySelector("#startbtn").addEventListener("click", function() {
   document.getElementById("secDec").innerHTML = 0;
   document.getElementById("secUni").innerHTML = 0;
   themeAudio.load();
+  themeAudio.volume = 0.06;
   myBall.draw(ctx); // DRAW BALL
   game(); // START CANVAS
   start(); // START GAME
